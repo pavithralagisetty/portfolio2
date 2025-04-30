@@ -167,4 +167,125 @@ window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-animate(); 
+animate();
+
+// Project grid manual scrolling
+const projectGrid = document.querySelector('.project-grid');
+const projectContainer = document.querySelector('.project-items-container');
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+projectGrid.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - projectGrid.offsetLeft;
+    scrollLeft = projectGrid.scrollLeft;
+    projectGrid.style.cursor = 'grabbing';
+    projectContainer.style.animationPlayState = 'paused';
+});
+
+projectGrid.addEventListener('mouseleave', () => {
+    isDown = false;
+    projectGrid.style.cursor = 'grab';
+    projectContainer.style.animationPlayState = 'running';
+});
+
+projectGrid.addEventListener('mouseup', () => {
+    isDown = false;
+    projectGrid.style.cursor = 'grab';
+    projectContainer.style.animationPlayState = 'running';
+});
+
+projectGrid.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - projectGrid.offsetLeft;
+    const walk = (x - startX) * 2;
+    projectGrid.scrollLeft = scrollLeft - walk;
+});
+
+// Touch events for mobile
+projectGrid.addEventListener('touchstart', (e) => {
+    isDown = true;
+    startX = e.touches[0].pageX - projectGrid.offsetLeft;
+    scrollLeft = projectGrid.scrollLeft;
+    projectContainer.style.animationPlayState = 'paused';
+});
+
+projectGrid.addEventListener('touchend', () => {
+    isDown = false;
+    projectContainer.style.animationPlayState = 'running';
+});
+
+projectGrid.addEventListener('touchmove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - projectGrid.offsetLeft;
+    const walk = (x - startX) * 2;
+    projectGrid.scrollLeft = scrollLeft - walk;
+});
+
+// Pause animation on hover
+projectGrid.addEventListener('mouseenter', () => {
+    projectContainer.style.animationPlayState = 'paused';
+});
+
+projectGrid.addEventListener('mouseleave', () => {
+    projectContainer.style.animationPlayState = 'running';
+});
+
+// Arrow navigation
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
+const projectItems = document.querySelectorAll('.project-item');
+
+// Calculate the width to scroll (including gap)
+const itemWidth = projectItems[0].offsetWidth;
+const gap = 32; // 2rem gap
+const scrollAmount = itemWidth + gap;
+
+leftArrow.addEventListener('click', (e) => {
+    e.preventDefault();
+    projectGrid.scrollBy({
+        left: -scrollAmount,
+        behavior: 'smooth'
+    });
+    projectContainer.style.animationPlayState = 'paused';
+    setTimeout(() => {
+        projectContainer.style.animationPlayState = 'running';
+    }, 1000);
+});
+
+rightArrow.addEventListener('click', (e) => {
+    e.preventDefault();
+    projectGrid.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+    });
+    projectContainer.style.animationPlayState = 'paused';
+    setTimeout(() => {
+        projectContainer.style.animationPlayState = 'running';
+    }, 1000);
+});
+
+// Show/hide arrows based on scroll position
+function updateArrowVisibility() {
+    const scrollLeft = projectGrid.scrollLeft;
+    const maxScroll = projectGrid.scrollWidth - projectGrid.clientWidth;
+    
+    // Always show arrows, just adjust opacity
+    leftArrow.style.opacity = scrollLeft > 0 ? '0.8' : '0.3';
+    rightArrow.style.opacity = scrollLeft < maxScroll - 10 ? '0.8' : '0.3';
+    
+    // Enable/disable click functionality
+    leftArrow.style.pointerEvents = scrollLeft > 0 ? 'auto' : 'none';
+    rightArrow.style.pointerEvents = scrollLeft < maxScroll - 10 ? 'auto' : 'none';
+}
+
+// Update arrow visibility on scroll and resize
+projectGrid.addEventListener('scroll', updateArrowVisibility);
+window.addEventListener('resize', updateArrowVisibility);
+
+// Initial setup
+updateArrowVisibility(); 
