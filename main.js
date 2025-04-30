@@ -105,9 +105,9 @@ function animate() {
     // Gentle rotation
     particlesMesh.rotation.y += 0.0001;
     
-    // Parallax effect based on mouse position
-    particlesMesh.position.x += (mouseX * 0.5 - particlesMesh.position.x) * 0.05;
-    particlesMesh.position.y += (mouseY * 0.5 - particlesMesh.position.y) * 0.05;
+    // Increased parallax effect based on mouse position
+    particlesMesh.position.x += (mouseX * 1.5 - particlesMesh.position.x) * 0.08;
+    particlesMesh.position.y += (mouseY * 1.5 - particlesMesh.position.y) * 0.08;
     
     // Twinkling effect
     const opacityAttribute = particlesMesh.geometry.getAttribute('opacity');
