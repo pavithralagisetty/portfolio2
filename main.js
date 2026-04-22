@@ -77,7 +77,7 @@ for(let i = 0; i < cometCount; i++) {
             Math.random() - 0.5,
             Math.random() - 0.5
         ).normalize(),
-        speed: Math.random() * 0.8 + 0.8,
+        speed: Math.random() * 0.2 + 0.15,
         tail: cometPositions
     };
     
