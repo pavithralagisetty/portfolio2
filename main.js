@@ -85,6 +85,81 @@ for(let i = 0; i < cometCount; i++) {
     scene.add(comet);
 }
 
+// === CELESTIAL BODIES ===
+
+
+// Planet 1 — blue gas giant
+const planet1Geometry = new THREE.SphereGeometry(3, 32, 32);
+const planet1Material = new THREE.MeshStandardMaterial({
+    color: 0x3366cc,
+    roughness: 0.7,
+    metalness: 0.2,
+});
+const planet1 = new THREE.Mesh(planet1Geometry, planet1Material);
+planet1.position.set(70, -30, -90);
+scene.add(planet1);
+
+// Planet 1 ring
+const ringGeometry = new THREE.RingGeometry(4.2, 6, 64);
+const ringMaterial = new THREE.MeshBasicMaterial({
+    color: 0x6699dd,
+    transparent: true,
+    opacity: 0.3,
+    side: THREE.DoubleSide,
+    blending: THREE.AdditiveBlending
+});
+const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+ring.position.copy(planet1.position);
+ring.rotation.x = Math.PI * 0.4;
+ring.rotation.y = Math.PI * 0.1;
+scene.add(ring);
+
+// Planet 2 — small reddish rocky planet
+const planet2Geometry = new THREE.SphereGeometry(1.5, 24, 24);
+const planet2Material = new THREE.MeshStandardMaterial({
+    color: 0xcc6644,
+    roughness: 0.9,
+    metalness: 0.1,
+});
+const planet2 = new THREE.Mesh(planet2Geometry, planet2Material);
+planet2.position.set(-40, -60, -70);
+scene.add(planet2);
+
+// Planet 3 — small pale green distant planet
+const planet3Geometry = new THREE.SphereGeometry(2, 24, 24);
+const planet3Material = new THREE.MeshStandardMaterial({
+    color: 0x88bbaa,
+    roughness: 0.8,
+    metalness: 0.15,
+});
+const planet3 = new THREE.Mesh(planet3Geometry, planet3Material);
+planet3.position.set(30, 70, -100);
+scene.add(planet3);
+
+// Nebula clouds — soft glowing blobs
+function createNebula(x, y, z, color, size) {
+    const nebulaGeometry = new THREE.SphereGeometry(size, 16, 16);
+    const nebulaMaterial = new THREE.MeshBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.03,
+        blending: THREE.AdditiveBlending
+    });
+    const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+    nebula.position.set(x, y, z);
+    scene.add(nebula);
+    return nebula;
+}
+
+const nebula1 = createNebula(50, 40, -80, 0x4466ff, 25);
+const nebula2 = createNebula(-60, -20, -100, 0xff4488, 20);
+const nebula3 = createNebula(-20, 60, -110, 0x44ffaa, 18);
+
+// Point light to illuminate planets
+const pointLight = new THREE.PointLight(0xffffff, 1.5, 300);
+pointLight.position.set(-80, 50, -60);
+scene.add(pointLight);
+
 // Add lights
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 scene.add(ambientLight);
@@ -104,6 +179,16 @@ function animate() {
     
     // Gentle rotation
     particlesMesh.rotation.y += 0.0001;
+
+    // Celestial body animations
+    const time = Date.now() * 0.001;
+
+    // Planets slowly orbit in place (gentle wobble)
+    planet1.rotation.y += 0.002;
+    planet2.rotation.y += 0.003;
+    planet3.rotation.y += 0.0015;
+    ring.rotation.z += 0.001;
+
     
     // Increased parallax effect based on mouse position
     particlesMesh.position.x += (mouseX * 1.5 - particlesMesh.position.x) * 0.08;

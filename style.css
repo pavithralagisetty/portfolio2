@@ -284,6 +284,19 @@ header::before {
     margin-bottom: 1.5rem;
 }
 
+.about-photo {
+    margin-top: 1.5rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.about-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .about-highlights {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -49,8 +49,8 @@
             <div class="about-grid">
                 <div class="about-text">
                     <h2>A bit about me</h2>
-                    <p>I'm a graduate student at Northeastern University pursuing my Master's in Data Science with a 4.0 GPA. I love tackling complex problems — whether that's building an ML pipeline for product recommendations, engineering real-time emergency triage systems, or training models to classify crop diseases from images.</p>
-                    <p>When I'm not coding, you'll find me at hackathons — I've won prizes at both the NEU AI Hackathon and Yconic AI Hackathon.</p>
+                    <p>I'm a graduate student at Northeastern University pursuing my Master's in Data Science with a 4.0 GPA. I love tackling complex problems, whether that's building an ML pipeline for product recommendations, engineering real-time emergency triage systems, or training models to classify crop diseases from images.</p>
+                    <p>When I'm not coding, you'll find me at hackathons. I've won prizes at both the NEU AI Hackathon and Yconic AI Hackathon.</p>
                 </div>
                 <div class="about-highlights">
                     <div class="highlight-card">
@@ -201,7 +201,7 @@
                 <div class="project-card">
                     <div class="project-badge"><i class="fas fa-trophy"></i> 1st Place ($700) — NEU AI Hackathon</div>
                     <div class="project-title-row"><div class="project-icon"><i class="fas fa-phone-volume"></i></div><h3>RescueLine</h3></div>
-                    <p class="project-problem">Emergency call centers get overwhelmed during crises — critical calls get lost in the queue.</p>
+                    <p class="project-problem">Emergency call centers get overwhelmed during crises and critical calls get lost in the queue.</p>
                     <ul class="project-points">
                         <li>Built a real-time triage system to handle high-volume emergency calls using AI-driven prioritization (P0–P3)</li>
                         <li>Integrated Twilio for telephony and ElevenLabs for conversational voice AI to classify and route critical calls to human agents</li>
@@ -219,11 +219,11 @@
                 <div class="project-card">
                     <div class="project-badge"><i class="fas fa-trophy"></i> 2nd Place ($1500) — Yconic AI Hackathon, "Best Startup Traction"</div>
                     <div class="project-title-row"><div class="project-icon"><i class="fas fa-robot"></i></div><h3>LeadCatch</h3></div>
-                    <p class="project-problem">Small businesses lose revenue from missed calls that never convert into bookings.</p>
+                    <p class="project-problem">Small businesses lose revenue when they miss customer calls. Callers hang up and never come back.</p>
                     <ul class="project-points">
-                        <li>Built an AI chat assistant leveraging LLMs, Twilio APIs, and async Python to convert missed calls into confirmed bookings</li>
-                        <li>Designed a scalable multi-user architecture enabling concurrent session handling and real-time message streaming</li>
-                        <li>Automated workflow integration for small business booking pipelines</li>
+                        <li>When a customer calls a small business and the call is missed, the AI automatically initiates a chat conversation with the caller via iMessage</li>
+                        <li>The AI assistant answers questions about the business, handles inquiries, and books an appointment, all without human intervention</li>
+                        <li>Built with LLMs, Twilio APIs, and async Python. Handles multiple users texting at once with concurrent session management and real-time message streaming</li>
                     </ul>
                     <div class="project-tags">
                         <span>Python</span><span>LLMs</span><span>Twilio</span>
@@ -236,7 +236,7 @@
 
                 <div class="project-card">
                     <div class="project-title-row"><div class="project-icon"><i class="fas fa-skull-crossbones"></i></div><h3>DEADPOOL</h3></div>
-                    <p class="project-problem">Startups fail from chain reactions nobody mapped — risks compound silently across domains.</p>
+                    <p class="project-problem">Startups fail from chain reactions nobody mapped. Risks compound silently across domains.</p>
                     <ul class="project-points">
                         <li>Built a multi-agent AI system to identify operational risks and failure cascades in startups before they become catastrophic</li>
                         <li>Orchestrated 6 specialist agents (People, Finance, Infrastructure, Product, Legal, Code Audit) running concurrently via LangGraph</li>
@@ -248,6 +248,39 @@
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/Ackshay206/DEADPOOL" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title-row"><div class="project-icon"><i class="fas fa-chart-pie"></i></div><h3>DataLens</h3></div>
+                    <p class="project-problem">Non-technical users struggle to extract insights from data without knowing SQL or Python.</p>
+                    <ul class="project-points">
+                        <li>Built a web-based analytics tool that lets users upload CSV files and analyze them using natural language queries powered by Google Gemini AI</li>
+                        <li>Developed a multilingual benchmark comparing GPT and Gemini for SQL/Pandas query generation from natural language</li>
+                        <li>Built a React + TypeScript frontend with Recharts visualizations and a FastAPI backend with pandas/numpy processing</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span>Python</span><span>R</span><span>FastAPI</span><span>React</span><span>TypeScript</span><span>Gemini</span><span>Perplexity</span><span>Streamlit</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Reghunaath/datalens" target="_blank"><i class="fab fa-github"></i> DataLens</a>
+                        <a href="https://github.com/Reghunaath/llm-multilingual-analytics-benchmark" target="_blank"><i class="fab fa-github"></i> Benchmark</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title-row"><div class="project-icon"><i class="fas fa-user-shield"></i></div><h3>HaloAI</h3></div>
+                    <p class="project-problem">Women walking alone at night lack a discreet, instant way to alert someone if they feel unsafe.</p>
+                    <ul class="project-points">
+                        <li>Built an AI-powered safety companion that engages users in real-time conversation during solo walks via ElevenLabs voice AI + Twilio</li>
+                        <li>Implemented a custom safe-word system that automatically sends an iMessage with live location to emergency contacts when triggered</li>
+                        <li>Developed a FastAPI backend with SQLite user registration and ngrok webhook tunneling</li>
+                    </ul>
+                    <div class="project-tags">
+                        <span>Python</span><span>FastAPI</span><span>ElevenLabs</span><span>Twilio</span><span>SQLite</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Reghunaath/HaloAI" target="_blank"><i class="fab fa-github"></i> Code</a>
                     </div>
                 </div>
 
@@ -330,6 +363,11 @@
                     <h4>Coursework</h4>
                     <p>DSA, OS, OOP, DBMS, Software Engineering</p>
                 </div>
+                <div class="skill-card">
+                    <i class="fas fa-robot"></i>
+                    <h4>AI Tools</h4>
+                    <p>Claude, GPT, Perplexity, Claude Code, ElevenLabs, Twelve Labs</p>
+                </div>
             </div>
         </section>
 
@@ -345,6 +383,9 @@
                 <a href="https://ieeexplore.ieee.org/document/10576141" class="research-link" target="_blank">
                     <i class="fas fa-external-link-alt"></i> View on IEEE Xplore
                 </a>
+            </div>
+            <div class="about-photo" style="margin-top: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">
+                <img src="images/hackathonwin.jpeg" alt="Pavithra holding $700 check at InnovAIte 2026 hackathon win">
             </div>
         </section>
 
