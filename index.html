@@ -455,7 +455,38 @@
         </section>
     </main>
 
+    <footer class="site-footer">
+        <div class="visitor-counter" id="visitor-counter">
+            <i class="fas fa-eye"></i>
+            <span id="visitor-count"></span> unique visitors
+        </div>
+    </footer>
+
     <script type="module" src="./main.js"></script>
     <script type="module" src="./animations.js"></script>
+    <script>
+        (function() {
+            var namespace = 'pavithra-portfolio';
+            var key = 'unique-visitors';
+            var baseUrl = 'https://api.counterapi.dev/v1/' + namespace + '/' + key;
+            var isNew = !localStorage.getItem('portfolio_visited');
+
+            var url = isNew ? baseUrl + '/up' : baseUrl;
+
+            fetch(url)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    var count = data.count;
+                    if (count != null) {
+                        document.getElementById('visitor-count').textContent = count.toLocaleString();
+                        document.getElementById('visitor-counter').style.opacity = '1';
+                        if (isNew) localStorage.setItem('portfolio_visited', '1');
+                    }
+                })
+                .catch(function() {
+                    document.getElementById('visitor-counter').style.display = 'none';
+                });
+        })();
+    </script>
 </body>
 </html>

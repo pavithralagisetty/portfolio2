@@ -5,7 +5,7 @@
     --accent-bg: rgba(37, 99, 235, 0.08);
     --accent-border: rgba(37, 99, 235, 0.2);
     --bg: #0b0b10;
-    --surface: rgba(0, 0, 0, 0.97);
+    --surface: rgba(0, 0, 0, 0.7);
     --surface-hover: rgba(0, 0, 0, 0.99);
     --text: #ffffff;
     --text-secondary: rgba(255, 255, 255, 0.8);
@@ -449,7 +449,7 @@ header::before {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s, opacity 0.3s;
     display: flex;
     flex-direction: column;
 }
@@ -825,4 +825,31 @@ header::before {
 @media (max-width: 480px) {
     .about-highlights { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== FOOTER / VISITOR COUNTER ===== */
+.site-footer {
+    position: relative;
+    text-align: center;
+    padding: 2rem 0 3rem;
+}
+
+.visitor-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.visitor-counter i {
+    font-size: 0.75rem;
+    color: var(--accent-light);
+}
+
+#visitor-count {
+    font-weight: 600;
+    color: var(--accent-light);
 }
